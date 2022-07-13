@@ -12,22 +12,40 @@ app.use(function(req, res, next) {
   next();
 });
 const connection = await createConnection();
-app.get("/", async function(req, res) {
+
+app.get("/", async (req, res)=> {
   res.send(await Note.find());
 });
-app.post("/", async function(req,res) {
-  console.log("title",req.body.title);
+
+app.get("/:id", async(req, res)=> {
+  res.send(await getNote(req.params.id));
+});
+
+app.post("/", async (req,res) => {
   const note = await Note.create({
     title: req.body.title,
     content: req.body.content,
     color: req.body.color
   }).save();
   res.send(note);
-})
+});
+
+app.delete("/:id", async (req, res) => {
+  const note = await getNote(req.params.id);
+  if(note) Note.remove(note);
+  res.send("true");
+});
+
 let port = 5000;
 
-app.listen(port, function() {
+app.listen(port, ()=> {
  console.log("Server started successfully");
 });
 }
 main();
+
+async function getNote(id: string) {
+  const note = await Note.findOne({ where: { id: id }});
+  if(!note) throw new Error("Note not found");
+  return note;
+}
