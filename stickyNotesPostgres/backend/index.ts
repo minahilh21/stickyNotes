@@ -36,6 +36,16 @@ app.delete("/:id", async (req, res) => {
   res.send("true");
 });
 
+app.put("/:id", async (req, res) => {
+  console.log("in put");
+  const note = await getNote(req.params.id);
+  note.title = req.body.title ? req.body.title : note.title;
+  note.content = req.body.content ? req.body.content : note.content;
+  note.color = req.body.color ? req.body.color: note.color;
+  await Note.save(note);
+  res.send(note);
+})
+
 let port = 5000;
 
 app.listen(port, ()=> {
