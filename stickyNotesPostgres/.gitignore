@@ -1,6 +1,7 @@
 
-/backend/node_modules
+*/node_modules
+*/build
 
 /backend/ormconfig.json
 
-.DS_Store
+*.DS_Store
