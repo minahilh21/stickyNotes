@@ -13,14 +13,17 @@ app.use(function(req, res, next) {
 });
 const connection = await createConnection();
 
+//get all Notes
 app.get("/", async (req, res)=> {
   res.send(await Note.find());
 });
 
+//get one Note
 app.get("/:id", async(req, res)=> {
   res.send(await getNote(req.params.id));
 });
 
+//Add Note
 app.post("/", async (req,res) => {
   const note = await Note.create({
     title: req.body.title,
@@ -30,14 +33,15 @@ app.post("/", async (req,res) => {
   res.send(note);
 });
 
+//Delete Note
 app.delete("/:id", async (req, res) => {
   const note = await getNote(req.params.id);
   if(note) Note.remove(note);
   res.send("true");
 });
 
+//Update Note
 app.put("/:id", async (req, res) => {
-  console.log("in put");
   const note = await getNote(req.params.id);
   note.title = req.body.title ? req.body.title : note.title;
   note.content = req.body.content ? req.body.content : note.content;
