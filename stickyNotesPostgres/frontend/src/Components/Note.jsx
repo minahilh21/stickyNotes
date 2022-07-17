@@ -4,17 +4,9 @@ import axios from "axios";
 import { useState } from 'react'
 
 const Note = ({note}) =>{
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [color, setColor] = useState("");
-
-
-  const [createdAt, setCreatedAt] = useState(0);
+  const [item, setItem] = useState([]);
     axios.get("http://localhost:5000/",  { crossdomain: true }).then(response => {
-      setTitle(response.data[0].title);
-      setContent(response.data[0].content);
-      setCreatedAt(response.data[0].createdAt);
-      setColor(response.data[0].color);
+      setItem(response.data);
     });
     function getTime(createdAt) {
       const minute = Math.floor((new Date() - new Date(createdAt))/(1000*60))
@@ -27,17 +19,19 @@ const Note = ({note}) =>{
     }
   return (
     <>
+    {item.map(item1 => (
     <li >
-      <div href="" style={{backgroundColor: color}}>
-        <h2>{ title }</h2>
-          <p>{ content }</p>
-        <h6>{ getTime(createdAt) }</h6>
+      <div href="" style={{backgroundColor: item1.color}}>
+        <h2>{ item1.title }</h2>
+          <p>{ item1.content }</p>
+        <h6>{ getTime(item1.createdAt) }</h6>
         <span>
           <MdEdit/> 
           <MdDelete/>
         </span>
       </div>
     </li>
+    ))}
     </>
   )
 }
