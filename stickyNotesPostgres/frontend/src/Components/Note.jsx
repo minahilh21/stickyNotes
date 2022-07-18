@@ -3,10 +3,10 @@ import { MdEdit, MdDelete  } from 'react-icons/md'
 import axios from "axios";
 import { useState } from 'react'
 
-const Note = ({note}) =>{
-  const [item, setItem] = useState([]);
+const Note = ({ onDelete }) =>{
+  const [items, setItems] = useState([]);
     axios.get("http://localhost:5000/",  { crossdomain: true }).then(response => {
-      setItem(response.data);
+      setItems(response.data);
     });
     function getTime(createdAt) {
       const minute = Math.floor((new Date() - new Date(createdAt))/(1000*60))
@@ -17,17 +17,24 @@ const Note = ({note}) =>{
       else if (minute > 25200 && minute < 756000) return `${Math.floor(minute/(25200))} months ago`
       else return `${Math.floor(minute/(756000))} years ago`
     }
+  //   async function deleteNote(id){
+  //     await fetch(`http://localhost:5000/${id}`, {
+  //       method: "DELETE",
+  //       headers: {"Content-Type":"application/json"}
+  //     }, {mode: 'cors'});
+  //     console.log("yo hooo")
+  // }
   return (
     <>
-    {item.map(item1 => (
-    <li >
-      <div href="" style={{backgroundColor: item1.color}}>
-        <h2>{ item1.title }</h2>
-          <p>{ item1.content }</p>
-        <h6>{ getTime(item1.createdAt) }</h6>
+    {items.map(item => (
+    <li key={item.id}>
+      <div href="" style={{backgroundColor: item.color}}>
+        <h2>{ item.title }</h2>
+          <p>{ item.content }</p>
+        <h6>{ getTime(item.createdAt) }</h6>
         <span>
           <MdEdit/> 
-          <MdDelete/>
+          <MdDelete onClick={()=> onDelete(item.id)}/>
         </span>
       </div>
     </li>
@@ -36,4 +43,6 @@ const Note = ({note}) =>{
   )
 }
 export default Note;
+
+
 
