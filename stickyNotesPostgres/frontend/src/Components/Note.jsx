@@ -17,13 +17,6 @@ const Note = ({ onDelete }) =>{
       else if (minute > 25200 && minute < 756000) return `${Math.floor(minute/(25200))} months ago`
       else return `${Math.floor(minute/(756000))} years ago`
     }
-  //   async function deleteNote(id){
-  //     await fetch(`http://localhost:5000/${id}`, {
-  //       method: "DELETE",
-  //       headers: {"Content-Type":"application/json"}
-  //     }, {mode: 'cors'});
-  //     console.log("yo hooo")
-  // }
   return (
     <>
     {items.map(item => (
