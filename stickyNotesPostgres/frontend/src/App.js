@@ -17,12 +17,20 @@ async function addNote(title, content, color){
   }
   return await axios.post('http://localhost:5000/', note);
 }
+async function updateNote(id, title, content, color){
+  const note = {
+    title,
+    content,
+    color
+  }
+  return await axios.put(`http://localhost:5000/${id}`, note);
+}
 function App() {
   return (
     <div className="App">
       <header className="App-header">
       <Header onAdd={addNote} />
-      <Notes onDelete={deleteNote}/>
+      <Notes onDelete={deleteNote} onEdit={updateNote}/>
       </header>
     </div>
   );

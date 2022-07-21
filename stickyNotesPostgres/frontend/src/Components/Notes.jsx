@@ -1,9 +1,9 @@
 import Note from "./Note"
-function Notes({onDelete}) {
+function Notes({onDelete, onEdit}) {
 return (
     <div>
       <ul>
-       <Note onDelete={onDelete}/>
+       <Note onDelete={ onDelete } onEdit={ onEdit }/>
       </ul>
     </div>
   )

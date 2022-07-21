@@ -10,10 +10,6 @@ export default function Header({ onAdd }) {
   return (
     <div>
       <h2>Sticky Notes</h2>
-      {/* <AddButton onclick="setIsOpen"/> */}
-      {/* <button className="btn" onClick={() => setIsOpen(true)}>
-        Open Modal
-      </button>  */}
       <button className="btn btn-block" style={{color: '#000'}} onClick={() => setIsOpen(true)}>
         Add Note
       </button>

@@ -2,8 +2,9 @@ import React from 'react'
 import { MdEdit, MdDelete  } from 'react-icons/md'
 import axios from "axios";
 import { useState } from 'react'
+import AddNote from './AddNote';
 
-const Note = ({ onDelete }) =>{
+const Note = ({ onDelete, onEdit }) =>{
   const [items, setItems] = useState([]);
     axios.get("http://localhost:5000/",  { crossdomain: true }).then(response => {
       setItems(response.data);
@@ -26,7 +27,7 @@ const Note = ({ onDelete }) =>{
           <p>{ item.content }</p>
         <h6>{ getTime(item.createdAt) }</h6>
         <span>
-          <MdEdit/> 
+          <MdEdit onClick={()=> onEdit(item.id, item.title, item.content, item.color)}/>
           <MdDelete onClick={()=> onDelete(item.id)}/>
         </span>
       </div>
