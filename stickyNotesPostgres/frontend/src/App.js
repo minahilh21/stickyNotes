@@ -2,7 +2,14 @@ import React from 'react';
 import './App.css';
 import Notes from "./Components/Notes";
 import axios from "axios";
-import Header from "./Components/Header"
+import AddNote from "./Components/AddNote"
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+
 
 async function deleteNote(id){
   await axios.delete(`http://localhost:5000/${id}`, {
@@ -15,7 +22,7 @@ async function addNote(title, content, color){
     content,
     color
   }
-  return await axios.post('http://localhost:5000/', note);
+  await axios.post('http://localhost:5000/', note);
 }
 async function updateNote(id, title, content, color){
   const note = {
@@ -27,12 +34,27 @@ async function updateNote(id, title, content, color){
 }
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <Header onAdd={addNote} />
-      <Notes onDelete={deleteNote} onEdit={updateNote}/>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <h1>Sticky Notes</h1>
+        <Routes>
+          <Route exact path="/" element={
+            <>
+              <Link to="/add">
+                <button>
+                  Add Note
+                </button>
+              </Link>
+              <Notes onDelete={deleteNote}/>
+            </>
+          }
+          />
+          <Route exact path="/add" element={<AddNote onAdd={addNote} />}/>
+        </Routes>
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 export default App;
