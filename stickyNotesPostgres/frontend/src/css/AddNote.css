@@ -1,0 +1,47 @@
+.wrapper {
+  background-color: #fff;
+  width: clamp(400px, 80%, 800px);
+  margin: 0 auto;
+  /* box-shadow: 5px green; */
+  color: #000;
+}
+.color-pallet {
+  display: flex;
+  /* flex-flow: row wrap; */
+  width :90%;
+  margin: 1rem 4rem;
+  justify-content:space-around;
+}
+input[type=color] {
+  flex-basis: 70%;
+  margin: 0 4rem;
+  float: right;
+}
+input[type=text], textarea {
+  width :90%;
+  margin: 1rem;
+  font-size: 2rem;
+  border:  1px solid #444;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+}
+input[type=submit] {
+  padding: 1rem 2rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: green;
+  box-shadow: none;
+  border-radius: 0.5rem;
+  border: none;
+  /* float: right; */
+}
+input[type=submit]:hover {
+  opacity: 0.5;
+}
+label {
+  font-size: 2rem;
+}
+h3 {
+  padding-top: 2rem;
+}
