@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import './../css/AddNote.css';
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 
-const AddNote = ({ onAdd }) => {
+const EditNote = ({ onEdit, id }) => {
+  id = '321c65c0-fa6b-43ce-b9af-9c5d29d3a5c7';
+  const [items, setItems] = useState([]);
+    axios.get(`http://localhost:5000/${id}`,  { crossdomain: true }).then(response => {
+      setItems(response.data);
+    });
   const navigate = useNavigate();
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [color, setColor] = useState('#ffbbba')
+  const [title, setTitle] = useState(items.title)
+  const [content, setContent] = useState(items.content)
+  const [color, setColor] = useState('#776667')
+
   return (
     <div className="wrapper">
-      <h3>Add Note</h3>
+      <h3>Edit Note</h3>
       <form>
         <input 
           type="text" 
@@ -43,7 +50,7 @@ const AddNote = ({ onAdd }) => {
           value='Save Note' 
           onClick={(e)=> {
             e.preventDefault();  
-            onAdd(title,content,color)
+            onEdit(id, title, content, color)
             setTitle('')
             setContent('')
             navigate('/')
@@ -62,4 +69,4 @@ const AddNote = ({ onAdd }) => {
   );
 };
 
-export default AddNote;
+export default EditNote;

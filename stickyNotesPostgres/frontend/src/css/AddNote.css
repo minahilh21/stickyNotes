@@ -17,6 +17,9 @@ input[type=color] {
   margin: 0 4rem;
   float: right;
 }
+textarea {
+  height: 20rem;
+}
 input[type=text], textarea {
   width :90%;
   margin: 1rem;

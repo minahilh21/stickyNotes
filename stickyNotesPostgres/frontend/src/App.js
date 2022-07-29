@@ -3,6 +3,8 @@ import './App.css';
 import Notes from "./Components/Notes";
 import axios from "axios";
 import AddNote from "./Components/AddNote"
+import EditNote from "./Components/EditNote"
+
 import {
   BrowserRouter,
   Routes,
@@ -46,11 +48,12 @@ function App() {
                   Add Note
                 </button>
               </Link>
-              <Notes onDelete={deleteNote}/>
+              <Notes onDelete={deleteNote} onEdit={updateNote}/>
             </>
           }
           />
           <Route exact path="/add" element={<AddNote onAdd={addNote} />}/>
+          <Route path="/edit" element={<EditNote onEdit={updateNote} id= {11}/>}/>
         </Routes>
         </header>
       </div>
