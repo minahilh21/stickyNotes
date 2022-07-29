@@ -53,7 +53,7 @@ function App() {
           }
           />
           <Route exact path="/add" element={<AddNote onAdd={addNote} />}/>
-          <Route path="/edit" element={<EditNote onEdit={updateNote} id= {11}/>}/>
+          <Route path="/edit/:id" element={<EditNote onEdit={updateNote}/>}/>
         </Routes>
         </header>
       </div>

@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './../css/AddNote.css';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 
-const EditNote = ({ onEdit, id }) => {
-  id = '321c65c0-fa6b-43ce-b9af-9c5d29d3a5c7';
-  const [items, setItems] = useState([]);
+const EditNote = ({ onEdit }) => {
+  const param = useParams();
+  let id = param.id;
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [color, setColor] = useState('')
+    useEffect(() => {
+      getNote();
+    },[])
+  const getNote = async () => {
     axios.get(`http://localhost:5000/${id}`,  { crossdomain: true }).then(response => {
-      setItems(response.data);
+      setTitle(response.data.title);
+      setContent(response.data.content);
+      setColor(response.data.color);
     });
+  }
   const navigate = useNavigate();
-  const [title, setTitle] = useState(items.title)
-  const [content, setContent] = useState(items.content)
-  const [color, setColor] = useState('#776667')
-
   return (
     <div className="wrapper">
       <h3>Edit Note</h3>
@@ -51,8 +57,6 @@ const EditNote = ({ onEdit, id }) => {
           onClick={(e)=> {
             e.preventDefault();  
             onEdit(id, title, content, color)
-            setTitle('')
-            setContent('')
             navigate('/')
             }
           } 

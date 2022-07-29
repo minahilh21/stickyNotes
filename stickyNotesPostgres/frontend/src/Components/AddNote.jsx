@@ -13,7 +13,8 @@ const AddNote = ({ onAdd }) => {
       <h3>Add Note</h3>
       <form>
         <input 
-          type="text" 
+          type="text"
+          required 
           id="title" 
           name="title" 
           placeholder='Enter Title'
@@ -23,6 +24,7 @@ const AddNote = ({ onAdd }) => {
         <br/>
         <textarea 
           type="text" 
+          required
           id="content" 
           name="content" 
           placeholder='Enter Content'
@@ -44,8 +46,6 @@ const AddNote = ({ onAdd }) => {
           onClick={(e)=> {
             e.preventDefault();  
             onAdd(title,content,color)
-            setTitle('')
-            setContent('')
             navigate('/')
             }
           } 

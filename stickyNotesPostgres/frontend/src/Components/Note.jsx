@@ -2,7 +2,7 @@ import React from 'react'
 import { MdEdit, MdDelete  } from 'react-icons/md'
 import axios from "axios";
 import { useState } from 'react'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Note = ({ onDelete }) =>{
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Note = ({ onDelete }) =>{
         <h6>{ getTime(item.createdAt) }</h6>
         <span>
             <MdEdit onClick={(e)=> {
-            navigate(`/edit`)
+            navigate(`/edit/${item.id}`)
             }
           } />
           <MdDelete onClick={()=> onDelete(item.id)}/>
