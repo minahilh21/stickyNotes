@@ -13,11 +13,26 @@ const Note = ({ onDelete }) =>{
     function getTime(createdAt) {
       const minute = Math.floor((new Date() - new Date(createdAt))/(1000*60))
       if(minute === 0 ) return `seconds ago`
-      if(minute > 1 && minute < 60) return `${minute} minutes ago`
-      else if (minute > 60 && minute < 3600) return `${Math.floor(minute/60)} hours ago`
-      else if (minute > 3600 && minute < 25200) return `${Math.floor(minute/(3600))} days ago`
-      else if (minute > 25200 && minute < 756000) return `${Math.floor(minute/(25200))} months ago`
-      else return `${Math.floor(minute/(756000))} years ago`
+      if(minute >= 1 && minute < 60) return `${minute} minutes ago`
+      else if (minute >= 60 && minute < 1440) {
+        const hours = Math.floor(minute/60);
+        if(hours <= 1)
+          return `1 hour ago`;
+        else return  `${hours} hours ago`
+      }
+      else if (minute >= 1440 && minute < 43800) {
+        const days = Math.floor(minute/(1440));
+        if(days <= 1)
+          return `1 day ago`;
+        return `${days} days ago`
+      }
+      else if (minute >= 43800 && minute < 525600) {
+        const months = Math.floor(minute/(43800));
+        if(months <= 1)
+          return `1 month ago`;
+        return `${months} months ago`
+      }
+      else return `${Math.floor(minute/(525600))} years ago`
     }
   return (
     <>
@@ -28,7 +43,7 @@ const Note = ({ onDelete }) =>{
           <p>{ item.content }</p>
         <h6>{ getTime(item.createdAt) }</h6>
         <span>
-            <MdEdit onClick={(e)=> {
+            <MdEdit onClick={()=> {
             navigate(`/edit/${item.id}`)
             }
           } />
