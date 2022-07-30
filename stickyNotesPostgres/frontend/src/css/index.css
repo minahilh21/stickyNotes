@@ -28,7 +28,7 @@ span {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: normal;
 }
 
@@ -84,4 +84,7 @@ button {
   box-shadow: none;
   border-radius: 0.5rem;
   border: none;
+}
+button:hover {
+  background-color: #eee;
 }
