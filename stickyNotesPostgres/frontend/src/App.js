@@ -4,6 +4,7 @@ import Notes from "./Components/Notes";
 import axios from "axios";
 import AddNote from "./Components/AddNote"
 import EditNote from "./Components/EditNote"
+import swal from 'sweetalert';
 
 import {
   BrowserRouter,
@@ -14,9 +15,25 @@ import {
 
 
 async function deleteNote(id){
-  await axios.delete(`http://localhost:5000/${id}`, {
-    headers: {"Content-Type":"application/json"}
-  }, {mode: 'cors'});
+  const willDelete = await swal({
+    title: "Are you sure?",
+    text: "Are you sure want to delete this note?",
+    icon: "warning",
+    buttons: [
+      'Cancel',
+      'Delete'
+    ],
+    dangerMode: true,
+  });
+  
+  if (willDelete) {
+    await axios.delete(`http://localhost:5000/${id}`, {
+      headers: {"Content-Type":"application/json"}
+    }, {mode: 'cors'});
+    swal("Deleted!", "Note deleted sucessfully", "success", {
+    className: "confirmation-button"
+    });
+  }
 }
 async function addNote(title, content, color){
   const note = {
@@ -25,6 +42,7 @@ async function addNote(title, content, color){
     color
   }
   await axios.post('http://localhost:5000/', note);
+  swal("Note added!","Note saved sucessfully", "success");
 }
 async function updateNote(id, title, content, color){
   const note = {
@@ -32,7 +50,8 @@ async function updateNote(id, title, content, color){
     content,
     color
   }
-  return await axios.put(`http://localhost:5000/${id}`, note);
+  await axios.put(`http://localhost:5000/${id}`, note);
+  swal("Note Updated!","Note updated sucessfully", "success");
 }
 function App() {
   return (
