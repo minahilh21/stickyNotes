@@ -2,12 +2,10 @@
   background-color: #fff;
   width: clamp(400px, 80%, 800px);
   margin: 0 auto;
-  /* box-shadow: 5px green; */
   color: #000;
 }
 .color-pallet {
   display: flex;
-  /* flex-flow: row wrap; */
   width :90%;
   margin: 1rem 4rem;
   justify-content:space-around;
@@ -37,7 +35,6 @@ input[type=submit] {
   box-shadow: none;
   border-radius: 0.5rem;
   border: none;
-  /* float: right; */
 }
 input[type=submit]:hover {
   opacity: 0.5;

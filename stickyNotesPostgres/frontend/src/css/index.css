@@ -9,7 +9,6 @@ body {
   margin:0;
   padding:0;
 }
-
 h2 {
   font-weight: bold;
   font-size: 2rem;
@@ -26,21 +25,19 @@ span {
   right: 10px;
   bottom: 0;
 }
-
 p {
   font-size: 2rem;
   font-weight: normal;
 }
-
-ul,li{
+ul,li {
   list-style:none;
 }
-ul{
+ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-ul li div{
+ul li div {
   text-decoration:none;
   color:#000;
   display:block;
@@ -51,25 +48,25 @@ ul li div{
   transform: rotate(-6deg);
   text-align: left;
 }
-ul li{
+ul li {
   margin:1em;
 }
-ul li:nth-child(even) div{
+ul li:nth-child(even) div {
   transform:rotate(4deg);
   position:relative;
   top:5px;
 }
-ul li:nth-child(3n) div{
+ul li:nth-child(3n) div {
   transform:rotate(-3deg);
   position:relative;
   top:-5px;
 }
-ul li:nth-child(5n) div{
+ul li:nth-child(5n) div {
   transform:rotate(5deg);
   position:relative;
   top:-10px;
 }
-ul li div:hover,ul li div:focus{
+ul li div:hover,ul li div:focus {
   box-shadow:10px 10px 7px rgba(0,0,0,.7);
   transform: scale(1.05);
   position:relative;
