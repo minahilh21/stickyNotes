@@ -5,3 +5,7 @@
 /backend/ormconfig.json
 
 *.DS_Store
+
+*.env
+
+*/package-lock.json

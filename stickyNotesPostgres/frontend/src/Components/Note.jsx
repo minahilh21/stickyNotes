@@ -37,17 +37,17 @@ const Note = ({ onDelete }) =>{
   return (
     <>
     {items.map(item => (
-    <li key={item.id}>
+    <li key={item._id}>
       <div href="" style={{backgroundColor: item.color}}>
         <h2>{ item.title }</h2>
           <p>{ item.content }</p>
         <h6>{ getTime(item.createdAt) }</h6>
         <span>
             <MdEdit onClick={()=> {
-            navigate(`/edit/${item.id}`)
+            navigate(`/edit/${item._id}`)
             }
           } />
-          <MdDelete onClick={()=> onDelete(item.id)}/>
+          <MdDelete onClick={()=> onDelete(item._id)}/>
         </span>
       </div>
     </li>
